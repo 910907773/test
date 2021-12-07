@@ -1,0 +1,62 @@
+{
+  "name": "test-vue1",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@fullcalendar/core": "^5.10.1",
+    "@fullcalendar/vue": "^5.10.1",
+    "core-js": "^2.6.5",
+    "element-ui": "^2.15.6",
+    "hexo-helper-live2d": "^3.1.1",
+    "live2d-widget-model-tororo": "^1.0.5",
+    "moment": "^2.29.1",
+    "ttzxh-vue-live2d": "^0.2.7",
+    "url-loader": "^4.1.1",
+    "vue": "^2.6.10",
+    "vue-calendar-component": "^2.8.2",
+    "vue-fullcalendar": "^1.0.9",
+    "vue-live2d": "^1.2.4",
+    "vue-lottie": "^0.2.1",
+    "vue-ydui": "^1.2.6",
+    "vuepress-plugin-helper-live2d": "^1.0.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.12.0",
+    "@vue/cli-plugin-eslint": "^3.12.0",
+    "@vue/cli-service": "^3.12.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^6.0.1",
+    "sass-loader": "^7.3.1",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
