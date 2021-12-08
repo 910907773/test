@@ -4,20 +4,18 @@
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <rili></rili>
     <div id="bg-blur">
-      <div class="hello">
-        <Calendar v-on:choseDay="clickDay" v-on:changeMonth="changeDate" v-on:isToday="clickToday" :markDate=arr :class="{yy:true}">
-        </Calendar>
+      <div class="home" style="position:relative">
+        <lottie :options="defaultOptions" v-on:animCreated="handleAnimation" />
       </div>
     </div>
     <live2d></live2d>
     <div id="diandian">
-       <dd><a href="#">点点</a> </dd>
-      <div> <li><a href="#">  <img src="./assets/ab.jpg"></a></li></div>
-      <div> <li><a href="#">  <img src="./assets/90.jpg" ></a></li></div>
-      <div>  <li><a href="#">  <img src="./assets/60.jpg" ></a></li></div>
-      </div>
-    <div class="home" style="position:relative">
-      <lottie :options="defaultOptions" v-on:animCreated="handleAnimation" />
+       <dd><a href="https://123-two-brown.vercel.app/">点点相册</a> </dd>
+      <a href="#">  <img class="pic pic1" src="./assets/ab.jpg"></a>
+       <a href="#">  <img class="pic pic2" src="./assets/90.jpg" ></a>
+       <a href="#">  <img class="pic pic6" src="./assets/68.jpg"></a>
+       <a href="#">  <img class="pic pic3" src="./assets/60.jpg"></a>
+
     </div>
     <div style="position: absolute;top: 0;width: 100%;" id="div1">
       <center style="margin-top: 30px;">
@@ -47,8 +45,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import Calendar from "vue-calendar-component";
 import lottie from 'vue-lottie';
-import * as animationData from './assets/110.json';
-
+import * as animationData from './assets/100.json';
 animationData.assets.forEach((item) => {
   item.u = '';
   if (item.w && item.h) {
@@ -194,6 +191,7 @@ export default {
     },
 
   },
+
   }
 
 </script>
@@ -235,14 +233,14 @@ html {
   padding: 0;
 }
 #diandian{
-  width: 100px;
-  height: 100px;
+  width: 650px;
+  height: 350px;
   position: absolute;
-  top: 300px;
-  right: 200px;
-  margin: 50px auto;
-  border:solid 1px red;
+  top: 600px;
+  right: -75px;
+  margin: 50px 60px 10px 40px;
   float: left;
+  background-image: url("./assets/120.jpg");
 }
 #diandian dl{
   float: left;
@@ -250,40 +248,82 @@ html {
   text-align: center;
   width: 190px;
 }
-#diandian div img{
-  display: block;
-  margin-top: 8px;
-  width: 300px;
-  height: 200px;
+#diandian  img{
+  padding: 10px 10px 15px;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 2px 2px 3px rgba(50,50,50,0.4);
+  -webkit-transition: all 0.5s ease-in;
+  -moz-transition: all 0.5s ease-in;
+  -ms-transition: all 0.5s ease-in;
+  -o-transition: all 0.5s ease-in;
+  transition: all 0.5s ease-in;
+  position: absolute;
+  z-index: 1;
 }
-#diandian li{
-  width: 300px;
-  height: 200px;
-  list-style: none;
-  float: left;
-  margin: 10px;
-  box-shadow: 0px 0px 10px white;
-}
-#diandian ul {
-  width: 102px;
-  height: 600px;
-  border: white solid 5px;
-  margin: 60px auto;
-  box-shadow: 0px 0px 10px #ccc;
+.pic{
+  width: 160px;
 }
 #diandian img:hover {
-  width: 150%;
-  height: 150%;
-  position: relative;
-  top: -40px;
-  left: -40px;
+  box-shadow: 15px 15px 20px rgba(50,50,50,0.4);
+  transform:rotate(0deg) scale(2.20);
+  -webkit-transform:rotate(0deg) scale(1.20);
+  z-index: 1000;
 }
-#diandian dl dd{
-  line-height: 35px;
-  font-size: 12px;
-  font-weight: bold;
+.pic1{
+  left: 400px;
+  top: 200px;
+  transform:rotate(-5deg);
+  -webkit-transform:rotate(-5deg);
 }
 
+.pic2{
+  left: 400px;
+  top: 0px;
+  transform:rotate(-10deg);
+  -webkit-transform:rotate(-10deg);
+}
+.pic3{
+  top: 80px;
+  right: 250px;
+  height: 200px;
+  width: 200px;
+}
+
+.pic4{
+  top: 130px;
+  left: 550px;
+  width: 80px;
+  height: 180px;
+  transform:rotate(-10deg);
+  -webkit-transform:rotate(-10deg);
+}
+
+.pic5{
+  top: 220px;
+  right: 500px;
+  transform:rotate(-10deg);
+  -webkit-transform:rotate(-10deg);
+  width: 50px;
+  height: 100px;
+}
+.pic6{
+  left: 0px;
+  top: 100px;
+  transform:rotate(5deg);
+  -webkit-transform:rotate(5deg);
+  height: 200px;
+  width: 150px;
+}
+
+.pic7{
+  left: 550px;
+  top: 0;
+  transform:rotate(20deg);
+  -webkit-transform:rotate(20deg);
+  width: 80px;
+  height: 200px;
+}
 
 input {
   border: none;
@@ -313,7 +353,7 @@ button {
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
   margin-left: 30px;
 }
-.hello{
+#hello{
   height: 500px;
   width: 600px;
   position: fixed;
@@ -331,8 +371,8 @@ button:hover {
   height: 500px;
   width: 600px;
   position: fixed;
-  top:50px;
-  right: 80px;
+  top:500px;
+  right: -500px;
 }
 tr {
   display: block;
@@ -345,20 +385,6 @@ tr {
 td {
   text-align: center;
   padding: 10px 50px;
-}
-h1,
-h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
 }
 
 </style>

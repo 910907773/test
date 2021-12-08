@@ -2,54 +2,237 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta charset="utf-8">
-    <title>WindowShades</title>
+    <title>图片展示效果</title>
+    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans|Oswald'><link rel="stylesheet">
     <style type="text/css">
-        *{
-            margin: 0;
-            padding: 0;
+        .slider {
+            width: 100%;
+            height: 100vh;
         }
-        body{
-            background: url("./assets/ag.png");
+
+        .slider .items-group {
+            width: 100%;
+            height: 100%;
+            position: relative;
         }
-        .box{
-            width: 800px;
-            height: 360px;
-            margin: 200px auto;
-            /*溢出部分隐藏*/
+
+        .slider .items-group .item {
+            top: 0px;
+            left: 0px;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
             overflow: hidden;
+            transition: 0.5s;
+            visibility: hidden;
+            position: relative;
+            padding: 50px 20px;
+            position: absolute;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
         }
-        .box img{
-            width: 640px;
-            height: 360px;
+
+        .slider .items-group .item:hover .bg {
+            opacity: 0.2;
         }
-        li{
-            list-style: none;
-            width: 155px;
-            height: 360px;
-            float: left;
-            border-left: 5px solid white;
-            box-shadow: -5px 0px 10px black;
-            transition: all 0.5s linear;
+
+        .slider .items-group .item:hover .block {
+            box-shadow: 0px 0px 50px #333;
         }
-        /*鼠标悬浮在ul上，让ul变小*/
-        .box ul:hover li{
-            width: 35px;
+
+        .slider .items-group .item.active {
+            opacity: 1;
+            visibility: visible;
         }
-        /*鼠标悬浮到某个li上，让li变大*/
-        .box ul li:hover {
-            width: 635px;
+
+        .slider .items-group .item .bg {
+            top: 0px;
+            left: 0px;
+            opacity: 1;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            transition: 0.5s;
+            position: absolute;
+            transform: scale(1.03);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .slider .items-group .item .blur {
+            top: 0px;
+            left: 0px;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            transition: 0.5s;
+            filter: blur(5px);
+            position: absolute;
+            transform: scale(1.03);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .slider .items-group .item .block {
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            color: #ffffff;
+            transition: box-shadow 0.5s;
+            max-width: 300px;
+            overflow: hidden;
+            max-height: 450px;
+            border-radius: 50px;
+            transform: scale(1.03);
+            box-sizing: border-box;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            box-shadow: none;
+        }
+
+        .slider .items-group .item .block .circleLight {
+            top: 0px;
+            left: 0px;
+            opacity: 0;
+            content: "";
+            width: 100%;
+            height: 100%;
+            display: block;
+            transition: 0.5s;
+            position: absolute;
+            border-radius: 10px;
+            background: radial-gradient(circle at 80px 40px, #fff, transparent);
+        }
+
+        .slider .items-group .item .block .text {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            justify-content: center;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .slider .items-group .item .block h2 {
+            font-family: "Oswald", sans-serif;
+            font-size: 130px;
+            margin-bottom: 0px;
+        }
+
+        .slider .items-group .item .block p {
+            font-family: "Open Sans", sans-serif;
+            font-size: 15px;
+        }
+
+        .slider .items-group .item .block:hover {
+            box-shadow: 0px 0px 70px #111;
+        }
+
+        .slider .items-group .item .block:hover .circleLight {
+            opacity: 0.4;
+        }
+
+        .slider .navigations {
+            bottom: 0px;
+            width: 100%;
+            position: absolute;
+        }
+
+        .slider .navigations .dots {
+            height: 20px;
+            padding: 10px 0px;
+            text-align: center;
+        }
+
+        .slider .navigations .dots li {
+            width: 10px;
+            height: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            background: #fff;
+            border-radius: 50%;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .slider .navigations .dots li + li {
+            margin-left: 10px;
+        }
+
+        .slider .navigations .dots li:hover {
+            filter: blur(2px);
+        }
+
+        .slider .navigations .dots li.active {
+            width: 15px;
+            height: 15px;
+        }
+
+        .slider .navigations .dots li.active:hover {
+            filter: blur(0px);
         }
     </style>
 </head>
 <body>
-    <div class="box">
-        <ul>
-<h1>电子相册</h1>
-<li><img src="./assets/ab.jpg"></li>
-<li><img src="./assets/40.jpg"></li>
-<li><img src="./assets/60.jpg"></li>
-        </ul>
+<div class="slider">
+    <div class="items-group">
+        <!-- 四个跳转页面，可自行调整 -->
+        <div class="item">
+            <a href="https://dakawangye.vercel.app/" target="_self">4545</a>
+            <div class="block">
+                <span class="circleLight"></span>
+                <div class="text">
+                    <h2>Hello</h2>
+                    <p>Glad to see you~</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="block">
+                <span class="circleLight"></span>
+                <div class="text">
+                    <h2>Hello</h2>
+                    <p>Glad to see you~</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="block">
+                <span class="circleLight"></span>
+                <div class="text">
+                    <h2>Hello</h2>
+                    <p>Glad to see you~</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="block">
+                <span class="circleLight"></span>
+                <div class="text">
+                    <h2>Hello</h2>
+                    <p>Glad to see you~</p>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- 菜单效果 -->
+    <div class="navigations">
+        <ul class="dots"></ul>
+    </div>
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src="./script.js"></script>
 </body>
 </html>
